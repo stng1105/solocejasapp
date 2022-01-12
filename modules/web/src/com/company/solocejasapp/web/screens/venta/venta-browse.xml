@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
+        caption="msg://ventaBrowse.caption"
+        focusComponent="ventasTable"
+        messagesPack="com.company.solocejasapp.web.screens.venta">
+    <data readOnly="true">
+        <collection id="ventasDc"
+                    class="com.company.solocejasapp.entity.Venta">
+            <view extends="_local">
+                <property name="vendedora" view="_minimal">
+                    <property name="firstName"/>
+                    <property name="lastName"/>
+                </property>
+                <property name="local" view="_local"/>
+                <property name="cliente" view="_local"/>
+                <property name="formaPago" view="_minimal"/>
+            </view>
+            <loader id="ventasDl">
+                <query>
+                    <![CDATA[select e from solocejasapp_Venta e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="ventasTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="ventasTable"
+                dataLoader="ventasDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="ventasTable"
+                    width="100%"
+                    dataContainer="ventasDc"
+                    multiselect="true">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+                <action id="refresh" type="refresh"/>
+                <action id="excel" type="excel"/>
+            </actions>
+            <columns>
+                <column id="numeroVenta" caption="Número de Venta"/>
+                <column id="fecha"/>
+                <column id="vendedora"/>
+                <column id="local"/>
+                <column id="cliente"/>
+                <column id="dinero" caption="Dinero de Venta"/>
+                <column id="formaPago" caption="Forma de Pago"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="ventasTable.create"/>
+                <button id="editBtn" action="ventasTable.edit"/>
+                <button id="removeBtn" action="ventasTable.remove"/>
+                <button id="refreshBtn" action="ventasTable.refresh"/>
+                <button id="excelBtn" action="ventasTable.excel"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

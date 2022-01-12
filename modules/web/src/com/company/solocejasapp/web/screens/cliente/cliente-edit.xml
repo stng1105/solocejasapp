@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://clienteEdit.caption"
+        focusComponent="form"
+        messagesPack="com.company.solocejasapp.web.screens.cliente">
+    <data>
+        <instance id="clienteDc"
+                  class="com.company.solocejasapp.entity.Cliente">
+            <view extends="_local"/>
+            <loader/>
+        </instance>
+    </data>
+    <dialogMode height="AUTO"
+                width="AUTO"
+                modal="true"
+                forceDialog="true"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="clienteDc">
+            <column width="350px">
+                <textField id="identificacionField" property="identificacion"/>
+                <textField id="nombreField" property="nombre"/>
+                <textField id="emailField" property="email"/>
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="closeBtn" action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

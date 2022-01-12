@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://ventaEdit.caption"
+        focusComponent="form"
+        messagesPack="com.company.solocejasapp.web.screens.venta">
+    <data>
+        <instance id="ventaDc"
+                  class="com.company.solocejasapp.entity.Venta">
+            <view extends="_local">
+                <property name="vendedora" view="_minimal">
+                    <property name="firstName"/>
+                    <property name="lastName"/>
+                </property>
+                <property name="local" view="_local"/>
+                <property name="cliente" view="_local"/>
+                <property name="formaPago" view="_minimal"/>
+            </view>
+            <loader/>
+        </instance>
+        <collection id="vendedorasDc" class="com.haulmont.cuba.security.entity.User" view="_minimal">
+            <loader id="vendedorasDl">
+                <query>
+                    <![CDATA[select e from sec$User e]]>
+                </query>
+            </loader>
+        </collection>
+        <collection id="localsDc" class="com.company.solocejasapp.entity.Local" view="_minimal">
+            <loader id="localsDl">
+                <query>
+                    <![CDATA[select e from solocejasapp_Local e]]>
+                </query>
+            </loader>
+        </collection>
+        <collection id="clientesDc" class="com.company.solocejasapp.entity.Cliente" view="_minimal">
+            <loader id="clientesDl">
+                <query>
+                    <![CDATA[select e from solocejasapp_Cliente e]]>
+                </query>
+            </loader>
+        </collection>
+        <collection id="formaPagoesDc" class="com.company.solocejasapp.entity.FormaPago" view="_minimal">
+            <loader id="formaPagoesDl">
+                <query>
+                    <![CDATA[select e from solocejasapp_FormaPago e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="AUTO"
+                width="AUTO"
+                modal="true"
+                forceDialog="true"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="ventaDc">
+            <column width="350px">
+                <textField id="numeroVentaField" property="numeroVenta"/>
+                <dateField id="fechaField" property="fecha"/>
+                <lookupPickerField id="vendedoraField" optionsContainer="vendedorasDc" property="vendedora"/>
+                <lookupPickerField id="localField" optionsContainer="localsDc" property="local"/>
+                <lookupPickerField id="clienteField" optionsContainer="clientesDc" property="cliente"/>
+                <textField id="dineroField" property="dinero"/>
+                <lookupPickerField id="formaPagoField" optionsContainer="formaPagoesDc" property="formaPago"/>
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="closeBtn" action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

@@ -1,0 +1,5 @@
+@import "helium-ext";
+
+@mixin com_company_solocejasapp {
+  @include com_company_solocejasapp-helium-ext;
+}

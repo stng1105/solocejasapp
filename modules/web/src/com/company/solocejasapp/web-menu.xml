@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<menu-config xmlns="http://schemas.haulmont.com/cuba/menu.xsd">
+    <menu id="application-solocejasapp" insertBefore="reports" caption="mainMsg://menu_config.application-solocejasapp" icon="font-icon:FEMALE">
+        <item screen="solocejasapp_Venta.browse" caption="mainMsg://menu_config.solocejasapp_Venta.browse" icon="font-icon:DOLLAR"/>
+        <item screen="solocejasapp_Cliente.browse" caption="mainMsg://menu_config.solocejasapp_Cliente.browse"/>
+        <item screen="solocejasapp_FormaPago.browse" caption="mainMsg://menu_config.solocejasapp_FormaPago.browse"/>
+        <item screen="solocejasapp_Local.browse" caption="mainMsg://menu_config.solocejasapp_Local.browse"/>
+        <item screen="solocejasapp_Servicio.browse" caption="mainMsg://menu_config.solocejasapp_Servicio.browse"/>
+    </menu>
+</menu-config>

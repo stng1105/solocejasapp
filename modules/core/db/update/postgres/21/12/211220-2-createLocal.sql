@@ -1,0 +1,1 @@
+create unique index IDX_SOLOCEJASAPP_LOCAL_UK_SEDE on SOLOCEJASAPP_LOCAL (SEDE) where DELETE_TS is null ;

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
+        caption="msg://clienteBrowse.caption"
+        focusComponent="clientesTable"
+        messagesPack="com.company.solocejasapp.web.screens.cliente">
+    <data readOnly="true">
+        <collection id="clientesDc"
+                    class="com.company.solocejasapp.entity.Cliente">
+            <view extends="_local"/>
+            <loader id="clientesDl">
+                <query>
+                    <![CDATA[select e from solocejasapp_Cliente e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="clientesTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="clientesTable"
+                dataLoader="clientesDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="clientesTable"
+                    width="100%"
+                    dataContainer="clientesDc"
+                    multiselect="true">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+                <action id="excel" type="excel"/>
+            </actions>
+            <columns>
+                <column id="identificacion"/>
+                <column id="nombre"/>
+                <column id="email"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="clientesTable.create"/>
+                <button id="editBtn" action="clientesTable.edit"/>
+                <button id="removeBtn" action="clientesTable.remove"/>
+                <button id="excelBtn" action="clientesTable.excel"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>
