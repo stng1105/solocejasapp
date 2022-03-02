@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
+        caption="msg://reporteBrowse.caption"
+        focusComponent="reportesTable"
+        messagesPack="com.company.solocejasapp.web.screens.reporte">
+    <data readOnly="true">
+        <collection id="reportesDc"
+                    class="com.company.solocejasapp.entity.Reporte">
+            <view extends="_local">
+                <property name="vendedora" view="_local"/>
+                <property name="local" view="_minimal">
+                    <property name="sur"/>
+                </property>
+            </view>
+            <loader id="reportesDl">
+                <query>
+                    <![CDATA[select e from solocejasapp_Reporte e order by e.createTs desc]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="reportesTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="reportesTable"
+                dataLoader="reportesDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="reportesTable"
+                    width="100%"
+                    dataContainer="reportesDc"
+                    multiselect="true">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+                <action id="refresh" type="refresh"/>
+                <action id="excel" type="excel"/>
+            </actions>
+            <columns>
+                <column id="fecha"/>
+                <column id="vendedora"/>
+                <column id="local"/>
+                <column id="numeroServicios"/>
+                <column id="dineroVentas"/>
+                <column id="pestanas" caption="Pestañas"/>
+                <column id="aceites"/>
+                <column id="nomina"/>
+                <column id="semana"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="reportesTable.create"/>
+                <button id="editBtn" action="reportesTable.edit"/>
+                <button id="removeBtn" action="reportesTable.remove"/>
+                <button id="refreshBtn" action="reportesTable.refresh"/>
+                <button id="excelBtn" action="reportesTable.excel"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

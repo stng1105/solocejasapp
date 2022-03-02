@@ -8,17 +8,19 @@
         <collection id="ventasDc"
                     class="com.company.solocejasapp.entity.Venta">
             <view extends="_local">
-                <property name="vendedora" view="_minimal">
-                    <property name="firstName"/>
-                    <property name="lastName"/>
-                </property>
+                <property name="vendedora" view="_local"/>
                 <property name="local" view="_local"/>
                 <property name="cliente" view="_local"/>
+                <property name="servicio" view="_minimal"/>
+                <property name="servicio_2" view="_minimal"/>
+                <property name="servicio_3" view="_minimal"/>
+                <property name="servicio_4" view="_minimal"/>
+                <property name="servicio_5" view="_minimal"/>
                 <property name="formaPago" view="_minimal"/>
             </view>
             <loader id="ventasDl">
                 <query>
-                    <![CDATA[select e from solocejasapp_Venta e]]>
+                    <![CDATA[select e from solocejasapp_Venta e order by e.numeroVenta desc]]>
                 </query>
             </loader>
         </collection>
@@ -34,8 +36,7 @@
         </filter>
         <groupTable id="ventasTable"
                     width="100%"
-                    dataContainer="ventasDc"
-                    multiselect="true">
+                    dataContainer="ventasDc">
             <actions>
                 <action id="create" type="create"/>
                 <action id="edit" type="edit"/>
@@ -49,6 +50,12 @@
                 <column id="vendedora"/>
                 <column id="local"/>
                 <column id="cliente"/>
+                <column id="cantidadServicios" caption="Cantidad Servicios"/>
+                <column id="servicio" caption="Servicio 1"/>
+                <column id="servicio_2" caption="Servicio 2"/>/>
+                <column id="servicio_3" caption="Servicio 3"/>
+                <column id="servicio_4" caption="Servicio 4"/>
+                <column id="servicio_5" caption="Servicio 5"/>
                 <column id="dinero" caption="Dinero de Venta"/>
                 <column id="formaPago" caption="Forma de Pago"/>
             </columns>
@@ -60,6 +67,7 @@
                 <button id="removeBtn" action="ventasTable.remove"/>
                 <button id="refreshBtn" action="ventasTable.refresh"/>
                 <button id="excelBtn" action="ventasTable.excel"/>
+                <button id="crearreporteBtn" caption="Crear Reporte" stylename="danger"/>
             </buttonsPanel>
         </groupTable>
         <hbox id="lookupActions" spacing="true" visible="false">

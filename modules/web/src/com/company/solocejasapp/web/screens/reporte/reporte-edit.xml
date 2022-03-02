@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://reporteEdit.caption"
+        focusComponent="form"
+        messagesPack="com.company.solocejasapp.web.screens.reporte">
+    <data>
+        <instance id="reporteDc"
+                  class="com.company.solocejasapp.entity.Reporte">
+            <view extends="_local">
+                <property name="vendedora" view="_local"/>
+                <property name="local" view="_minimal">
+                    <property name="sur"/>
+                </property>
+            </view>
+            <loader/>
+        </instance>
+        <collection id="vendedorasDc" class="com.haulmont.cuba.security.entity.User" view="_minimal">
+            <loader id="vendedorasDl">
+                <query>
+                    <![CDATA[select e from sec$User e]]>
+                </query>
+            </loader>
+        </collection>
+        <collection id="localsDc" class="com.company.solocejasapp.entity.Local" view="_minimal">
+            <loader id="localsDl">
+                <query>
+                    <![CDATA[select e from solocejasapp_Local e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="AUTO"
+                width="AUTO"
+                modal="true"
+                forceDialog="true"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="reporteDc">
+            <column width="350px">
+                <dateField id="fechaField" property="fecha"/>
+                <lookupPickerField id="vendedoraField" optionsContainer="vendedorasDc" property="vendedora"/>
+                <lookupPickerField id="localField" optionsContainer="localsDc" property="local"/>
+                <textField id="numeroServiciosField" property="numeroServicios"/>
+                <textField id="dineroVentasField" property="dineroVentas"/>
+                <textField id="pestanasField" property="pestanas" caption="Pestañas"/>
+                <textField id="aceitesField" property="aceites"/>
+                <textField id="nominaField" property="nomina"/>
+                <textField id="semanaField" property="semana"/>
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="closeBtn" action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

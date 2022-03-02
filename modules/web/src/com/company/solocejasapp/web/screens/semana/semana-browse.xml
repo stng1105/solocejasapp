@@ -1,51 +1,51 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
         xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
-        caption="msg://clienteBrowse.caption"
-        focusComponent="clientesTable"
-        messagesPack="com.company.solocejasapp.web.screens.cliente">
+        caption="msg://semanaBrowse.caption"
+        focusComponent="semanasTable"
+        messagesPack="com.company.solocejasapp.web.screens.semana">
     <data readOnly="true">
-        <collection id="clientesDc"
-                    class="com.company.solocejasapp.entity.Cliente">
+        <collection id="semanasDc"
+                    class="com.company.solocejasapp.entity.Semana">
             <view extends="_local"/>
-            <loader id="clientesDl">
+            <loader id="semanasDl">
                 <query>
-                    <![CDATA[select e from solocejasapp_Cliente e order by e.createTs desc]]>
+                    <![CDATA[select e from solocejasapp_Semana e]]>
                 </query>
             </loader>
         </collection>
     </data>
     <dialogMode height="600"
                 width="800"/>
-    <layout expand="clientesTable"
+    <layout expand="semanasTable"
             spacing="true">
         <filter id="filter"
-                applyTo="clientesTable"
-                dataLoader="clientesDl">
+                applyTo="semanasTable"
+                dataLoader="semanasDl">
             <properties include=".*"/>
         </filter>
-        <groupTable id="clientesTable"
+        <groupTable id="semanasTable"
                     width="100%"
-                    dataContainer="clientesDc"
+                    dataContainer="semanasDc"
                     multiselect="true">
             <actions>
                 <action id="create" type="create"/>
                 <action id="edit" type="edit"/>
                 <action id="remove" type="remove"/>
+                <action id="refresh" type="refresh"/>
                 <action id="excel" type="excel"/>
             </actions>
             <columns>
-                <column id="identificacion"/>
-                <column id="nombre"/>
-                <column id="email"/>
+                <column id="numeroSemana"/>
             </columns>
             <rowsCount/>
             <buttonsPanel id="buttonsPanel"
                           alwaysVisible="true">
-                <button id="createBtn" action="clientesTable.create"/>
-                <button id="editBtn" action="clientesTable.edit"/>
-                <button id="removeBtn" action="clientesTable.remove"/>
-                <button id="excelBtn" action="clientesTable.excel"/>
+                <button id="createBtn" action="semanasTable.create"/>
+                <button id="editBtn" action="semanasTable.edit"/>
+                <button id="removeBtn" action="semanasTable.remove"/>
+                <button id="refreshBtn" action="semanasTable.refresh"/>
+                <button id="excelBtn" action="semanasTable.excel"/>
             </buttonsPanel>
         </groupTable>
         <hbox id="lookupActions" spacing="true" visible="false">

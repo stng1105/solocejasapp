@@ -1,4 +1,4 @@
-create table SOLOCEJASAPP_VENTA (
+create table SOLOCEJASAPP_REPORTE (
     ID uuid,
     VERSION integer not null,
     CREATE_TS timestamp,
@@ -8,19 +8,15 @@ create table SOLOCEJASAPP_VENTA (
     DELETE_TS timestamp,
     DELETED_BY varchar(50),
     --
-    NUMERO_VENTA integer,
     FECHA date,
     VENDEDORA_ID uuid,
     LOCAL_ID uuid,
-    CLIENTE_ID uuid,
-    DINERO bigint,
-    FORMA_PAGO_ID uuid,
-    CANTIDAD_SERVICIOS integer
-    SERVICIO_ID uuid,
-    SERVICIO_2_ID uuid,
-    SERVICIO_3_ID uuid,
-    SERVICIO_4_ID uuid,
-    SERVICIO_5_ID uuid,
+    NUMERO_SERVICIOS integer,
+    DINERO_VENTAS bigint,
+    PESTANAS integer,
+    ACEITES integer,
+    NOMINA bigint,
+    SEMANA integer,
     --
     primary key (ID)
 );

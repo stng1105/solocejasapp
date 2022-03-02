@@ -18,7 +18,7 @@ import java.util.Date;
 public class Venta extends StandardEntity {
     private static final long serialVersionUID = 3469961873829296784L;
 
-    @Column(name = "NUMERO_VENTA", unique = true)
+    @Column(name = "NUMERO_VENTA")
     private Integer numeroVenta;
 
     @Temporal(TemporalType.DATE)
@@ -48,6 +48,34 @@ public class Venta extends StandardEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "FORMA_PAGO_ID")
     private FormaPago formaPago;
+
+    @Column(name = "CANTIDAD_SERVICIOS")
+    private Integer cantidadServicios = 0;
+
+    @Lookup(type = LookupType.DROPDOWN, actions = {})
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "SERVICIO_ID")
+    private Servicio servicio;
+
+    @Lookup(type = LookupType.DROPDOWN, actions = {})
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "SERVICIO_2_ID")
+    private Servicio servicio_2;
+
+    @Lookup(type = LookupType.DROPDOWN, actions = {})
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "SERVICIO_3_ID")
+    private Servicio servicio_3;
+
+    @Lookup(type = LookupType.DROPDOWN, actions = {})
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "SERVICIO_4_ID")
+    private Servicio servicio_4;
+
+    @Lookup(type = LookupType.DROPDOWN, actions = {})
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "SERVICIO_5_ID")
+    private Servicio servicio_5;
 
     public FormaPago getFormaPago() {
         return formaPago;
@@ -103,5 +131,53 @@ public class Venta extends StandardEntity {
 
     public void setNumeroVenta(Integer numeroVenta) {
         this.numeroVenta = numeroVenta;
+    }
+
+    public Integer getCantidadServicios() {
+        return cantidadServicios;
+    }
+
+    public void setCantidadServicios(Integer cantidadServicios) {
+        this.cantidadServicios = cantidadServicios;
+    }
+
+    public Servicio getServicio() {
+        return servicio;
+    }
+
+    public void setServicio(Servicio servicio) {
+        this.servicio = servicio;
+    }
+
+    public Servicio getServicio_2() {
+        return servicio_2;
+    }
+
+    public void setServicio_2(Servicio servicio_2) {
+        this.servicio_2 = servicio_2;
+    }
+
+    public Servicio getServicio_3() {
+        return servicio_3;
+    }
+
+    public void setServicio_3(Servicio servicio_3) {
+        this.servicio_3 = servicio_3;
+    }
+
+    public Servicio getServicio_4() {
+        return servicio_4;
+    }
+
+    public void setServicio_4(Servicio servicio_4) {
+        this.servicio_4 = servicio_4;
+    }
+
+    public Servicio getServicio_5() {
+        return servicio_5;
+    }
+
+    public void setServicio_5(Servicio servicio_5) {
+        this.servicio_5 = servicio_5;
     }
 }

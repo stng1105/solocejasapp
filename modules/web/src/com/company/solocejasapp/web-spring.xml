@@ -13,6 +13,8 @@
             <map>
                 <entry key="solocejasapp_IniciarVentaService"
                        value="com.company.solocejasapp.service.IniciarVentaService"/>
+                <entry key="solocejasapp_CrearReporteService"
+                       value="com.company.solocejasapp.service.CrearReporteService"/>
             </map>
         </property>
     </bean>

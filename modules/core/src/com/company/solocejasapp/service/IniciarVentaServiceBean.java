@@ -18,7 +18,7 @@ public class IniciarVentaServiceBean implements IniciarVentaService {
 
     @Override
     public Date valoresIniciales() {
-        //TimeZone.setDefault(TimeZone.getTimeZone("GMT-5"));
+        TimeZone.setDefault(TimeZone.getTimeZone("GMT-5"));
         return (new Date());
     }
 }

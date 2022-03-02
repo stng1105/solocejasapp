@@ -2,7 +2,8 @@
 <window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
         caption="msg://ventaEdit.caption"
         focusComponent="form"
-        messagesPack="com.company.solocejasapp.web.screens.venta">
+        messagesPack="com.company.solocejasapp.web.screens.venta"
+        xmlns:swr="http://strangeway.org/xsd/responsive/sw-responsive.xsd">
     <data>
         <instance id="ventaDc"
                   class="com.company.solocejasapp.entity.Venta">
@@ -10,10 +11,42 @@
                 <property name="vendedora" view="_minimal">
                     <property name="firstName"/>
                     <property name="lastName"/>
+                    <property name="timeZone"/>
+                    <property name="timeZoneAuto"/>
                 </property>
-                <property name="local" view="_local"/>
-                <property name="cliente" view="_local"/>
+                <property name="local" view="_minimal">
+                    <property name="sur"/>
+                </property>
+                <property name="cliente" view="_minimal">
+                    <property name="nombre"/>
+                    <property name="email"/>
+                </property>
                 <property name="formaPago" view="_minimal"/>
+                <property name="servicio" view="_minimal">
+                    <property name="codigo"/>
+                    <property name="precio"/>
+                    <property name="precioSur"/>
+                </property>
+                <property name="servicio_2" view="_minimal">
+                    <property name="codigo"/>
+                    <property name="precio"/>
+                    <property name="precioSur"/>
+                </property>
+                <property name="servicio_3" view="_minimal">
+                    <property name="codigo"/>
+                    <property name="precio"/>
+                    <property name="precioSur"/>
+                </property>
+                <property name="servicio_4" view="_minimal">
+                    <property name="codigo"/>
+                    <property name="precio"/>
+                    <property name="precioSur"/>
+                </property>
+                <property name="servicio_5" view="_minimal">
+                    <property name="codigo"/>
+                    <property name="precio"/>
+                    <property name="precioSur"/>
+                </property>
             </view>
             <loader/>
         </instance>
@@ -45,26 +78,72 @@
                 </query>
             </loader>
         </collection>
+        <collection id="serviciosDc" class="com.company.solocejasapp.entity.Servicio" view="_local">
+            <loader id="serviciosDl">
+                <query>
+                    <![CDATA[select e from solocejasapp_Servicio e]]>
+                </query>
+            </loader>
+        </collection>
+        <collection id="servicio_2sDc" class="com.company.solocejasapp.entity.Servicio" view="_local">
+            <loader id="servicio_2sDl">
+                <query>
+                    <![CDATA[select e from solocejasapp_Servicio e]]>
+                </query>
+            </loader>
+        </collection>
+        <collection id="servicio_3sDc" class="com.company.solocejasapp.entity.Servicio" view="_local">
+            <loader id="servicio_3sDl">
+                <query>
+                    <![CDATA[select e from solocejasapp_Servicio e]]>
+                </query>
+            </loader>
+        </collection>
+        <collection id="servicio_4sDc" class="com.company.solocejasapp.entity.Servicio" view="_local">
+            <loader id="servicio_4sDl">
+                <query>
+                    <![CDATA[select e from solocejasapp_Servicio e]]>
+                </query>
+            </loader>
+        </collection>
+        <collection id="servicio_5sDc" class="com.company.solocejasapp.entity.Servicio" view="_local">
+            <loader id="servicio_5sDl">
+                <query>
+                    <![CDATA[select e from solocejasapp_Servicio e]]>
+                </query>
+            </loader>
+        </collection>
     </data>
     <dialogMode height="AUTO"
                 width="AUTO"
                 modal="true"
                 forceDialog="true"/>
-    <layout expand="editActions" spacing="true">
+    <layout expand="editActions" spacing="true" responsive="true">
         <form id="form" dataContainer="ventaDc">
             <column width="350px">
-                <textField id="numeroVentaField" property="numeroVenta"/>
-                <dateField id="fechaField" property="fecha"/>
-                <lookupPickerField id="vendedoraField" optionsContainer="vendedorasDc" property="vendedora"/>
-                <lookupPickerField id="localField" optionsContainer="localsDc" property="local"/>
-                <lookupPickerField id="clienteField" optionsContainer="clientesDc" property="cliente"/>
-                <textField id="dineroField" property="dinero"/>
-                <lookupPickerField id="formaPagoField" optionsContainer="formaPagoesDc" property="formaPago"/>
+                <textField id="numeroVentaField" property="numeroVenta" responsive="true"/>
+                <dateField id="fechaField" property="fecha" responsive="true"/>
+                <lookupPickerField id="vendedoraField" optionsContainer="vendedorasDc" property="vendedora" responsive="true"/>
+                <lookupPickerField id="localField" optionsContainer="localsDc" property="local" responsive="true"/>
+                <lookupPickerField id="clienteField" optionsContainer="clientesDc" property="cliente" responsive="true"/>
+                <textField id="cantidadServiciosField" property="cantidadServicios" caption="Cantidad Servicios" responsive="true"/>
+                <lookupPickerField id="servicio1Field" property="servicio" optionsContainer="serviciosDc"
+                                   caption="Servicio 1" enable="false" responsive="true"/>
+                <lookupPickerField id="servicio_2Field" property="servicio_2" optionsContainer="servicio_2sDc"
+                                   caption="Servicio 2" enable="false" responsive="true"/>
+                <lookupPickerField id="servicio_3Field" property="servicio_3" optionsContainer="servicio_3sDc"
+                                   caption="Servicio 3" enable="false" responsive="true"/>
+                <lookupPickerField id="servicio_4Field" property="servicio_4" optionsContainer="servicio_4sDc"
+                                   caption="Servicio 4" enable="false" responsive="true"/>
+                <lookupPickerField id="servicio_5Field" property="servicio_5" optionsContainer="servicio_5sDc"
+                                   caption="Servicio 5" enable="false" responsive="true"/>
+                <textField id="dineroField" property="dinero" responsive="true"/>
+                <lookupPickerField id="formaPagoField" optionsContainer="formaPagoesDc" property="formaPago" responsive="true"/>
             </column>
         </form>
         <hbox id="editActions" spacing="true">
             <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
-            <button id="closeBtn" action="windowClose"/>
+            <button id="closeBtn" action="windowClose" css="color: white; background-color: #EE3305"/>
         </hbox>
     </layout>
 </window>

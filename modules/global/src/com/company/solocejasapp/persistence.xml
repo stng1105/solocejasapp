@@ -7,5 +7,9 @@
         <class>com.company.solocejasapp.entity.FormaPago</class>
         <class>com.company.solocejasapp.entity.Servicio</class>
         <class>com.company.solocejasapp.entity.Venta</class>
+        <class>com.company.solocejasapp.entity.Reporte</class>
+        <class>com.company.solocejasapp.entity.Semana1</class>
+        <class>com.company.solocejasapp.entity.Semana</class>
+        <class>com.company.solocejasapp.entity.NumeroServicios</class>
     </persistence-unit>
 </persistence>
